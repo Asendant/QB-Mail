@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Serif+Display&family=Poppins&display=swap');
+
+* {
+    font-family: 'Poppins';
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.content {
+    background: rgb(50, 51, 51);
+    color: white;
+    width: 600px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    border-radius: 50px;
+    border: 5px rgb(0, 0, 65) solid;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -300px;
+}
+
+#packageAmount {
+    background: none;
+    border: 3px solid white;
+    color: white;
+    font-size: 20px;
+    width: 70%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+#packageAmount:focus {
+    outline: none;
+}
+
+#submit {
+    border: 3px solid white;
+    border-radius: 20px;
+    padding: 10px 30px;
+    background: none;
+    color: white;
+    font-weight: bold;
+    transition: all 250ms ease;
+}
+
+#submit:hover {
+    background: white;
+    color: black;
+    cursor: pointer;
+}
