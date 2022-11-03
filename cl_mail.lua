@@ -22,6 +22,15 @@ local StartPed = nil
 RegisterNetEvent('qb-mail:client:initialize', function()
     QBCore.Functions.LoadModel(Config.StartJobPedModel)
     StartPed = CreatePed(0, Config.StartJobPedModel, Config.StartJobPedSpawn.x, Config.StartJobPedSpawn.y, Config.StartJobPedSpawn.z - 1, Config.StartJobPedSpawn.w, false, false)
+    
+    StartPedBlip = AddBlipForCoord(Config.StartJobPedSpawn.x, Config.StartJobPedSpawn.y, Config.StartJobPedSpawn.z)
+    SetBlipSprite(StartPedBlip, 1)
+    SetBlipScale(StartPedBlip, 0.9)
+    SetBlipColour(StartPedBlip, 2)
+    BeginTextCommandSetBlipName("STRING")
+    AddTextComponentString("Mail Job")
+    EndTextCommandSetBlipName(StartPedBlip)
+
     TaskStartScenarioInPlace(StartPed, "WORLD_HUMAN_CLIPBOARD", true)
     FreezeEntityPosition(StartPed, true)
     SetEntityInvincible(StartPed, true)
@@ -254,11 +263,15 @@ function SpawnDeliveryPed()
         NextLocation = Config.DropOffLocations[math.random(#Config.DropOffLocations)]
     end
 
+    local CurrentModel = Config.PedModels[math.random(#Config.PedModels)]
+    QBCore.Functions.LoadModel(CurrentModel)
+    DeliverToPed = CreatePed(0, CurrentModel, NextLocation.x, NextLocation.y, NextLocation.z - 1, NextLocation.w, false, false)
+
     -- Blips
-    DropoffBlip = AddBlipForCoord(NextLocation.x, NextLocation.y, NextLocation.z)
-    SetBlipSprite(DropoffBlip, Config.DropoffBlip)
-    SetBlipColour(DropoffBlip, Config.DropoffBlipColor)
-    SetBlipScale(DropoffBlip, Config.DropoffBlipScale)
+    DropoffBlip = AddBlipForEntity(DeliverToPed)
+    SetBlipSprite(DropoffBlip, 1)
+    SetBlipColour(DropoffBlip, 2)
+    SetBlipScale(DropoffBlip, 0.9)
     SetBlipRoute(DropoffBlip, Config.UseGpsRoute)
     SetBlipRouteColour(DropoffBlip, Config.DropoffBlipColor)
     BeginTextCommandSetBlipName("STRING")
@@ -266,11 +279,7 @@ function SpawnDeliveryPed()
     EndTextCommandSetBlipName(DropoffBlip)
 
     LastLocation = NextLocation
-
-    local CurrentModel = Config.PedModels[math.random(#Config.PedModels)]
-
-    QBCore.Functions.LoadModel(CurrentModel)
-    DeliverToPed = CreatePed(0, CurrentModel, NextLocation.x, NextLocation.y, NextLocation.z - 1, NextLocation.w, false, false)
+    
     FreezeEntityPosition(DeliverToPed, true)
     SetEntityInvincible(DeliverToPed, true)
     SetBlockingOfNonTemporaryEvents(DeliverToPed, true)
