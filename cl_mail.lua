@@ -25,6 +25,7 @@ RegisterNetEvent('qb-mail:client:initialize', function()
     
     StartPedBlip = AddBlipForCoord(Config.StartJobPedSpawn.x, Config.StartJobPedSpawn.y, Config.StartJobPedSpawn.z)
     SetBlipSprite(StartPedBlip, 1)
+    SetBlipAsShortRange(StartPedBlip, true)
     SetBlipScale(StartPedBlip, 0.9)
     SetBlipColour(StartPedBlip, 2)
     BeginTextCommandSetBlipName("STRING")
