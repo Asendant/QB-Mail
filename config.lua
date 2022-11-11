@@ -48,9 +48,3 @@ Config.UseReturnDistance = true
 -- Misc
 Config.MinPayout = 100
 Config.MaxPayout = 300
-
--- Blips
-Config.DropOffBlip = 103
-Config.DropOffBlipScale = 0.65
-Config.DropoffBlipColor = 3
-Config.UseGpsRoute = true
