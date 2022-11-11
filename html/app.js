@@ -1,3 +1,5 @@
+let maximumPackages = 20;
+
 $(document).ready(function () {
     $('.container').hide();
 
@@ -21,9 +23,9 @@ $(document).ready(function () {
 function GetSubmittedAmount() {
     let value = parseInt(document.getElementById('packageAmount').value);
 
-    if (value <= 0 || value > 255) {
+    if (value <= 0 || value > maximumPackages) {
         $.post(`https://${GetParentResourceName()}/error`, JSON.stringify({
-            error: "Invalid Input.  Needs to be between 1 and 255."
+            error: `Invalid Input.  Needs to be between 1 and ${maximumPackages}`
         }))
 
         return;
